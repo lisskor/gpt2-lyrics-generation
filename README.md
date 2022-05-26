@@ -1,10 +1,10 @@
 # Generate song lyrics with fine-tuned GPT-2
 
-## Instructions are for University of Tartu HPC Falcon
-
 The [GPT-2 model](https://huggingface.co/gpt2) has been fine-tuned on the English-language part of 
 [this dataset](https://www.kaggle.com/datasets/neisse/scrapped-lyrics-from-6-genres) 
 to generate lyrics given a song name.
+
+## Usage (instructions are for University of Tartu HPC Falcon)
 
 Clone this repository:
 
