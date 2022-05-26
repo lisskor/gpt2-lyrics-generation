@@ -25,6 +25,7 @@ def generate_lyrics_interactive(gpt_generator, args):
         song_name = input("Type a name for a song, or enter 'quit' to exit: ").strip()
         if song_name != 'quit':
             prompt = f"Lyrics to {song_name} ::: "
+            # generate and print out lyrics for each user input
             for i, seq in enumerate(gpt_generator(prompt, max_length=args.max_seq_length,
                                                   num_return_sequences=args.num_sequences)):
                 print(f"Text {i+1}:")
@@ -33,13 +34,16 @@ def generate_lyrics_interactive(gpt_generator, args):
 
 
 def generate_lyrics_from_file(gpt_generator, args):
+    # read song names from file
     with open(args.input_names_file, 'r', encoding='utf-8') as in_fh:
         song_names = [line.strip() for line in in_fh.readlines()]
     with open('outputs.json', 'w', encoding='utf-8') as out_fh:
         for name in song_names:
             prompt = f"Lyrics to {name} ::: "
+            # generate lyrics
             for i, seq in enumerate(gpt_generator(prompt, max_length=args.max_seq_length,
                                                   num_return_sequences=args.num_sequences)):
+                # save lyrics to file outputs.json
                 json_dict = json.dumps({'name': f"{name}_{i}", "lyrics": seq['generated_text'][len(prompt):]})
                 out_fh.write(json_dict + '\n')
     logging.info("Saved lyrics into outputs.json")
