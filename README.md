@@ -62,3 +62,6 @@ the number of texts to generate for each song name, and whether to set the rando
 2. From a text file containing one song name per line. The generated texts will be saved into `outputs.json`.
 
 ```python gpt2-lyrics-generation/generate_lyrics.py --input-names-file gpt2-lyrics-generation/example_names.txt --model-dir gpt-2-lyrics --max-seq-length 150 --num-sequences 3 --reproducible```
+
+When reading prompts from a file, it should also be possible to run this with `sbatch` instead of `srun` 
+(not sure how that would work for interactive mode).
